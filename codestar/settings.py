@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("OdM08ZbYB)MJ")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-olutobi1996-djangofootb-p47lxg23wkk.ws-eu117.gitpod.io',
 '.herokuapp.com']
@@ -90,6 +90,11 @@ DATABASE_URL = os.getenv('postgresql://neondb_owner:qTzV6e4DfQRr@ep-flat-pine-a2
 DATABASES = {
     'default': dj_database_url.config(),
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://olutobi1996-djangofootb-p47lxg23wkk.ws-eu117.gitpod.io/",
+    "https://*.herokuapp.com"
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
