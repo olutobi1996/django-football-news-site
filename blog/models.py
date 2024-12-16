@@ -16,9 +16,16 @@ class Post(models.Model):
     User, on_delete=models.CASCADE, related_name="blog_posts"
 )
 
-User = models.ForeignKey(
-    User,
-    models.SET_NULL,
-    blank=True,
-    null=True,
-)
+
+
+class PostComment(models.Model):
+    sno = models.AutoField(primary_key=True)
+    comment = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    parent_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+
+
