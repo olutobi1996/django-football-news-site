@@ -7,12 +7,6 @@ STATUS = ((0, "Draft"), (1, "Published"))
 status = models.IntegerField(choices=STATUS, default=0)
 excerpt = models.TextField(blank=True)
 updated_on = models.DateTimeField(auto_now=True)
-categories = models.ManyToManyField("Category", related_name="posts")
-
-
-class Meta:
-    verbose_name_plural = "categories"
-
 
 
 class Post(models.Model):
@@ -22,9 +16,17 @@ class Post(models.Model):
     User, on_delete=models.CASCADE, related_name="blog_posts"
 )
 
+class Meta:
+    ordering = ('-pub_date', 'author')
+    def __str__(self):
+        return f"{self.title} | written by {self.author}"
 
+
+class Meta:
+    ordering = ('-pub_date', 'author')
 def __str__(self):
-    return self.title
+    return f"Comment{self.user.username} posted \"{self.content}\" on {self.date_published}"
+
 
 class PostComment(models.Model):
     sno = models.AutoField(primary_key=True)
