@@ -7,6 +7,12 @@ STATUS = ((0, "Draft"), (1, "Published"))
 status = models.IntegerField(choices=STATUS, default=0)
 excerpt = models.TextField(blank=True)
 updated_on = models.DateTimeField(auto_now=True)
+categories = models.ManyToManyField("Category", related_name="posts")
+
+
+class Meta:
+    verbose_name_plural = "categories"
+
 
 
 class Post(models.Model):
@@ -17,6 +23,8 @@ class Post(models.Model):
 )
 
 
+def __str__(self):
+    return self.title
 
 class PostComment(models.Model):
     sno = models.AutoField(primary_key=True)
