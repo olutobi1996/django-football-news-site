@@ -1,149 +1,101 @@
 - model: blog.post
   pk: null
   fields:
-    title: 
-    slug:
-    author:
-    content: 
-    created_on:
-    status:
-    excerpt: 
-    updated_on: 
+    title: Englands chances for winning the 2026 World Cup in North America?
+    slug: englands-chances-for-the-2026-world-cup?
+    author: 1
+    content: After a long and successful reign of Gareth Southgate managing the england football team, we now turn our eyes to Thomas Tuchel a former Chelsea, PSG and Bayern Munich German manager with a lot of success. Not since lifting the title in 1966 when the competition took place in England had one of Europe’s biggest footballing nations tasted success on the grandest stage. The former Chelsea boss will replace caretaker coach Lee Carsley in January 2025, meaning he’ll be at the helm from the beginning of the World Cup qualifying cycle. Despite dismal second seasons at both Bayern and Chelsea, Tuchel won major titles with both clubs. He led the Bavarians to Bundesliga glory in his first year in charge while he won three international trophies with the Blues beforehand. While Tuchel’s pragmatic, defense-first tactics may not always win over connoisseurs of action-packed football, his track record speaks for itself. Having Tuchel behind the wheel could be the turning point the Three Lions have been waiting for. Can he be the man to do it for our nation?
+    created_on: 2024-10-21T18:00:25.717Z
+    status: 0 
+    excerpt: From being World Champions in 1966 to not being in touching distance of silverware, can England finally do it in 2026?
+    updated_on: 2024-12-21T18:55:25.717Z
 
 
 - model: blog.post
   pk: null
-  fields:
-    title: 
-    slug:
-    author:
-    content: 
-    created_on:
-    status:
-    excerpt: 
-    updated_on:
+  fields: 
+    title: The Growth of women football should they be paid more?
+    slug: growth-of-the-womens-football
+    author: 1
+    content: Women's football has experienced significant growth in recent years, with more people playing, watching, and supporting the sport. The number of women and girls playing football has increased by 56% in the last four years. The number of women and girls' teams in England has more than doubled in the last seven years. Attendances for the Women's Super League have increased by 239% since 2021. The average attendance for a UEFA Women's Champions League game reached five figures for the first time in 2022/23. The economic impact is also extremely imppressive with The 2023 FIFA Women's World Cup contributed nearly $1.9 billion to the global GDP, created over 38,000 jobs, and added $932 million to household incomes. Now we know in mens football they are paid extremely high, with the increase in womens football world wide should they be paid on a similar level?
+    created_on: 2024-10-21T18:00:25.717Z
+    status: 1
+    excerpt: Womens football is growing day by day, should there be higher pay in the game?
+    updated_on: 2024-12-21T18:55:25.717Z
+
 
   - model: blog.post
   pk: null
   fields:
-    title: 
-    slug:
-    author:
-    content: 
-    created_on:
-    status:
-    excerpt: 
-    updated_on: 
+    title: How is Var affecting the premier league
+    slug: var-and-its-effects-on-the-premier-league
+    author: 1
+    content: The use of video assistant referees (VARs) in football was first included in the Laws of the Game in 2018/19. FIFA assesses the technological aspects of VAR systems through the FIFA Quality Programme for VAR Technology. Since then there has been a lot of controversy, mistakes had been acceptable in the past, but increasing levels of money in the game mean that errors by referees no longer just affect fans and players, but shareholders and venture capitalists thousands of miles away. However if it continues in this direction we’ll reach a point where each of us whether it be the fans, players or coaches, we will be faced with a sort of existential decision to make – What do we want from football? Correct decisions in every soulless, nervous and reluctant match or a game with passion, momentum and unadulterated heart? its very diffcult to judge var as its negatives out weigh the positives but the refs clearly need extra help, whats the fix?
+    created_on: 2024-10-21T18:00:25.717Z
+    status: 1
+    excerpt: Should VAR in football be kept in the game or are you glad to see the back of it?
+    updated_on: 2024-12-21T18:55:25.717Z
+
+
+- model: blog.post
+  pk: null
+  fields: 
+    title: Managing young players who grow up playing in an academy and get released
+    slug: young-players-and-after- life
+    author: 1
+    content: Football is a world of its own, with young talent as low as 8 being taken out of school to play football and there families being brought homes. At the highest level in the game clubs will do anything they can in there power to get a player, but what about when this player they once wanted is now not a part of their plans? This is the sad truth of the game young players being released at 16, 17, 18 or early 20s a pinacle time in the players career, after being brought up around that particular club all there lives and they live and breath the game. I have personally met and spoke to many players who have played at this high level that just been left with no help after their youth career, living this amazing life now back to reality and struggling to adjust to what once was an amazing part of their life now a horrible memory. What can these clubs do for the thousands of players who dont make it on the big stage and their opportunities after?
+    created_on: 2024-10-21T18:00:25.717Z
+    status: 1
+    excerpt: Are the world wide clubs of this football game giving there academy players the best duty of care for there after life of the game?
+    updated_on: 2024-12-21T18:55:25.717Z
+
+  - model: blog.post
+  pk: null
+  fields: 
+    title: Saudi Arabia and its influence in signing big football players
+    slug: saudi-and-its-influence-in-the-game
+    author: 1
+    content: Over the previous year’s Saudi Arabia have got much more involved in professional sports. First it was the staging of tennis, boxing, Formula 1 and European club football finals, among many other events. Boxing was the first significant sports event as they staged some of the biggest matches in recent history including professional fights between fighters such as Antony Joshua and Usyk. They have also entertained the world with hosting ‘celebrity’ fights which have a huge number of viewers. This is important information as it shows the willingness to get involved in some of the biggest sports worldwide. Saudi have also been involved in creating a new golfing organisation called LIV. The Saudi Pro League has got a lot of interest over the past year, more so than ever when they signed the world’s biggest star Cristiano Ronaldo! With the money being unmatchable to any other team in the world the big question is if players are moving over there just for the money is that still okay?
+    created_on: 2024-10-21T18:00:25.717Z
+    status: 1
+    excerpt: Saudia Arabia is slowly taking over the world in sports and events, is this a positive for players in their careers?
+    updated_on: 2024-12-21T18:55:25.717Z
 
 
 - model: blog.post
   pk: null
   fields:
-    title: 
-    slug:
-    author:
-    content: 
-    created_on:
-    status:
-    excerpt: 
-    updated_on: 
+    title: Footballers and the intense pressures mentally and physically
+    slug: footballers-and-its-pressures
+    author: 1
+    content: The green of the playing field may appear peaceful, but beneath the surface, it often boils with mental tension. From the penalty spot to injury time – players are not only physically but also mentally under high pressure. Where does this mental tension come from? Fear of failure? Stress? Performance pressure or the high demand to show a perfect performance on the field? Especially in professional football, players experience reactions from clubs, sponsors, and, of course, particularly from fans. This ranges from insults in the stadium to social media storms and even death threats. Mental stress in football can have significant effects on players’ performance. Mental strain due to high expectations, a desire for success, or failures can bring about physical discomfort and be emotionally noticeable. Burnout syndrome is the most prevalent mental illness in football. Affected individuals may experience physical symptoms such as fatigue and lethargy, along with inner restlessness. Psychologically, the individual may withdraw and lose the enjoyment of the game and sport. It is important to note that this manifests differently in each person. The pressures of the game is intense and players deal with it in many ways, do you think there is too much stress on the players.
+    created_on: 2024-10-21T18:00:25.717Z
+    status: 1
+    excerpt: The pressures of the game are intense on the physical and mental is this too much for the footballers?
+    updated_on: 2024-12-21T18:55:25.717Z
 
-    - model: blog.post
-  pk: null
-  fields:
-    title: 
-    slug:
-    author:
-    content: 
-    created_on:
-    status:
-    excerpt: 
-    updated_on: 
-
-
-- model: blog.post
-  pk: null
-  fields:
-    title: 
-    slug:
-    author:
-    content: 
-    created_on:
-    status:
-    excerpt: 
-    updated_on: 
-
-    - model: blog.post
-  pk: null
-  fields:
-    title: 
-    slug:
-    author:
-    content: 
-    created_on:
-    status:
-    excerpt: 
-    updated_on: 
-
-
-- model: blog.post
-  pk: null
-  fields:
-    title: 
-    slug:
-    author:
-    content: 
-    created_on:
-    status:
-    excerpt: 
-    updated_on:
 
   - model: blog.post
   pk: null
   fields:
-    title: 
-    slug:
-    author:
-    content: 
-    created_on:
-    status:
+    title: Racism in Football
+    slug: racism-in-the-game
+    author: 1
+    content: Reported incidents -In the 2022-23 season, reported incidents of discrimination in football increased by 65.1% compared to the previous season. Racism was the most commonly reported form of discrimination, accounting for nearly half of all reports. Public opinion, Over half of UK adults believe that efforts to tackle racism in football have not gone far enough. 70% of UK adults support imposing a 10-year ban from matches for fans who engage in racist chanting or behavior on social media. Online abuse In the 2022 World Cup, almost 20,000 abusive social media posts were aimed at players, coaches, and officials. Policing online hate, Local law enforcement agencies are largely responsible for policing online hate, but they lack the resources to monitor and investigate offenses effectively. Some say that the increase in reported incidents could be due to an increase in awareness of the problem and a greater willingness to speak out. Others say that social actions are needed to change the culture and mentality of people, and to provoke a change in behavior. There is still a big problem with racism in society, let alone football what needs to happen or change so this could be different for our future generation?
+    created_on: 2024-10-21T18:00:25.717Z
+    status: 1 
     excerpt: 
-    updated_on: 
+    updated_on: 2024-12-21T18:55:25.717Z
 
 
 - model: blog.post
   pk: null
   fields:
-    title: 
-    slug:
-    author:
-    content: 
-    created_on:
-    status:
-    excerpt: 
-    updated_on: 
-
-    - model: blog.post
-  pk: null
-  fields:
-    title: 
-    slug:
-    author:
-    content: 
-    created_on:
-    status:
-    excerpt: 
-    updated_on: 
-
-
-- model: blog.post
-  pk: null
-  fields:
-    title: 
-    slug:
-    author:
-    content: 
-    created_on:
-    status:
-    excerpt: 
-    updated_on: 
+    title: Social Media and the pressures on footballers
+    slug: social-media-and-its-effects
+    author: 1
+    content: When fans watch players perform on the football pitch or in high-level competitions, they often get caught up in the excitement. It’s easy for fans to forget that their favorite athletes are human. Previously, a fan would make a passing comment to their friends that a particular player or the team wasn’t playing well, and vent their frustration that way. But in today's online world, fans can express themselves on social networks and some aren’t shy about saying what they think about a player’s performance. With online access comes a particular brand of “keyboard courage.” Many people feel free to post things online about others that they would never say to the person directly. The poster may feel that they are simply expressing their opinion, but their comments can quickly cross the line into insults and harassment. For some athletes, the pressure they place on performing starts long before they reach the top levels. Highly talented young athletes with several years of development ahead of them struggle with their mental health, and there is pressure on these young stars to succeed. At the same time, youth soccer is much more intensive than it was in the past, and it isn’t just a game for young athletes anymore. Due to the world we live in there are now footballers retiring as young as 18, how do we stop this horrendous monstroserty for the young footballers and the world?
+    created_on: 2024-10-21T18:00:25.717Z
+    status: 1 
+    excerpt: We now live in a World where you can interact with anyone at any moment across the world, this has had a negative effect on atheletes and footballers...
+    updated_on: 2024-12-21T18:55:25.717Z
