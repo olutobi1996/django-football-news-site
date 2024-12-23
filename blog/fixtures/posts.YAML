@@ -24,7 +24,7 @@
     updated_on: 2024-12-21T18:55:25.717Z
 
 
-  - model: blog.post
+- model: blog.post
   pk: null
   fields:
     title: How is Var affecting the premier league
@@ -49,7 +49,7 @@
     excerpt: Are the world wide clubs of this football game giving there academy players the best duty of care for there after life of the game?
     updated_on: 2024-12-21T18:55:25.717Z
 
-  - model: blog.post
+- model: blog.post
   pk: null
   fields: 
     title: Saudi Arabia and its influence in signing big football players
@@ -75,7 +75,7 @@
     updated_on: 2024-12-21T18:55:25.717Z
 
 
-  - model: blog.post
+- model: blog.post
   pk: null
   fields:
     title: Racism in Football
