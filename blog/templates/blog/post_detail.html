@@ -11,20 +11,22 @@
                         <div class="mx-auto news-card-date-body w-75">
                             <i class="far fa-calendar-alt d-none d-block mx-auto"></i>
                             <!-- Post author goes before the | the post's created date goes after -->
-                            <span class="d-block news-card-date-value mt-1">{{ post.author }} | {{ post.created_on }}</span>
+                            <span class="d-block news-card-date-value mt-1">{{ post.author }} | {{ post.created_on
+                                }}</span>
                         </div>
                     </div>
                     <div class="news-card-body">
                         <div class="news-card-img">
-                <img class="img-fluid"="{% static 'images/football.jpg' %}"  alt="placeholder">
+                            <img class="img-fluid"="{% static 'images/football.jpg' %}" alt="placeholder">
                         </div>
                         <div class="news-card-content">
                             <div class="news-card-content-inner">
-                                 <!-- Post title goes in these h1 tags -->
+                                <!-- Post title goes in these h1 tags -->
                                 <h1>{{ post.title }}</h1>
                                 <p class="text-paragraph">
-                                     <!-- The post content goes inside the P tag -->
-                                        {{ post.content | safe }}</p>
+                                    <!-- The post content goes inside the P tag -->
+                                    {{ post.content | safe }}
+                                </p>
                             </div>
                         </div>
                     </div>
