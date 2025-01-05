@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('froala_editor/', include('froala_editor.urls')),
     path('<slug:slug>/', views.post_detail, name='post_detail'),
+     path("info/", include("info.urls"), name="info-urls"),
 ]

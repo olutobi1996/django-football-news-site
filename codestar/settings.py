@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'allauth.socialaccount',
     'froala_editor',
+    'info'
     'blog',
 ]
 
