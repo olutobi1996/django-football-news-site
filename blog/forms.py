@@ -1,9 +1,9 @@
-from .models import Comment
+from .models import PostComment
 from django import forms
 
 class CommentForm(forms.ModelForm):
-    content=forms.Textarea()
+   
 
     class Meta:
-        model = Comment
-        fields=['content']
+        model = PostComment
+        fields=['comment']

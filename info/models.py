@@ -1,8 +1,9 @@
 from django.db import models
+from froala_editor.fields import FroalaField
 
-class info(models.Model):
+class Info(models.Model):
     title = models.CharField(max_length=300, unique=True)
     slug = models.SlugField(max_length=300, unique=True)
     content = FroalaField()
-def __str__(self):
+    def __str__(self):
         return self.name
