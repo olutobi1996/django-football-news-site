@@ -18,10 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("", include("blog.urls"), name="blog-urls"),
     path("accounts/", include("allauth.urls")),
     path('admin/', admin.site.urls),
     path('froala_editor/', include('froala_editor.urls')),
-    path('<slug:slug>/', views.post_detail, name='post_detail'),
-     path("info/", include("info.urls"), name="info-urls"),
+    path("info/", include("info.urls"), name="info-urls"),
+    path("", include("blog.urls"), name="blog-urls"),
 ]

@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import info
+from .models import Info
 from froala_editor.fields import FroalaField
 
-@admin.register(Post)
+@admin.register(Info)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ["title","author","created_on"]
-    content = FroalaField()
+    list_display = ["title","slug"]
+    
