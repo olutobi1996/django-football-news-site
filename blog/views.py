@@ -10,7 +10,7 @@ class PostList(generic.ListView):
     paginate_by = 6
 
 def post_detail(request, slug):
-    post = get_object_or_404(queryset, slug=slug)
+    post = get_object_or_404(Post, slug=slug)
     comments = post.comments.all().order_by("-created_on")
     comment_count = post.comments.filter(approved=True).count()
     if request.method == "POST":
