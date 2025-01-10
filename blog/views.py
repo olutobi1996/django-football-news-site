@@ -11,12 +11,8 @@ class PostList(generic.ListView):
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    test = post._meta.get_fields()
-    for field in test:
-        print(field.name)
-    print('POST: ', post.postcomment_set)
-    comments = post.postcomment_set().order_by("-created_on")
-    comment_count = post.postcomment_set(approved=True).count()
+    comments = post.postcomment_set.all().order_by("-created_on")
+    comment_count = post.postcomment_set.count()
     if request.method == "POST":
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
