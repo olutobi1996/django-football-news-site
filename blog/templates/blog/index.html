@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
 
 
@@ -8,7 +8,6 @@
     <div class="container">
         <div class="text-center my-5">
             <h1 class="fw-bolder">Welcome to Football Blog Website</h1>
-            <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
         </div>
     </div>
 </header>
@@ -20,16 +19,19 @@
             {% for post in post_list %}
             <!-- Featured blog post-->
             <div class="card mb-4">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg"
-                        alt="..." /></a>
+                {% if "placeholder" in post.featured_image.url %}
+                <img class="card-img-top" src="{% static 'images/default.jpg' %}"
+                  alt="placeholder image">
+                {% else %}
+                <img class="card-img-top" src=" {{ post.featured_image.url }}"
+                  alt="{{ post.title }}">
+                {% endif %}
                 <div class="card-body">
                     <div class="small text-muted">Author: {{ post.author }}</div>
                     <a href="{% url 'post_detail' post.slug %}">
                         <h2 class="card-title h4">{{ post.title }}</h2>
                         <p class="card-text">{{ post.excerpt }}</p>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
-                            aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi
-                            vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                        <p class="card-text"></p>
                         <a class="btn btn-primary" href="#!">{{ post.created_on}}</a>
                 </div>
 
