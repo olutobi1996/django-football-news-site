@@ -63,4 +63,16 @@ def comment_edit(request, slug, comment_id):
             response['content_type'] = 'application/json'
             return response
 
-     
+def delete_comment(request):
+    id = request.POST['comment_id']
+    pk = request.POST['blogs_id']
+    if request.method == 'POST':
+        comment = get_object_or_404(Comment)
+        try:
+            comment.delete()
+            messages.success(request, 'You have successfully deleted the comment')
+
+        except:
+            messages.warning(request, 'The comment could not be deleted.')
+
+    return redirect('get_posts')
