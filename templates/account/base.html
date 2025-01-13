@@ -23,7 +23,6 @@
     {% endif %}
 
     <div>
-      <strong>{% trans "Menu:" %}</strong>
       <ul>
         {% if user.is_authenticated %}
         <li><a href="{% url 'account_email' %}">{% trans "Change Email" %}</a></li>
@@ -39,5 +38,7 @@
     {% endblock body %}
     {% block extra_body %}
     {% endblock extra_body %}
+    {% block extras %}
+    {% endblock %}
   </body>
 </html>

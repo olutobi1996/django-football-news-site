@@ -69,9 +69,17 @@
                     </div>
                     {% if not comment.approved and comment.author == user %}
                     <p class="approval">
-                        This comment is awaiting approval
+                        This Needs Checking!
                     </p>
                     {% endif %}
+                    <form action="/blog/{{ pk=comment_id }}/update", method="POST">
+                        {% csrf_token %}
+                        <input type='text' name='title' value='{{ comment_edit }}'/>
+                        <input type='text' class='textinput' name='content' value='{{ comment_form }}'/>
+                        <input type="submit" value="Submit"/>
+                    </form>
+                    <button name="submit">Save changes</button>
+                    </form>
                 </div>
                 <!-- Our for loop ends here -->
                 {% endfor %}
@@ -89,6 +97,12 @@
                 {% csrf_token %}
                 <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
             </form>
+            <form action = "{% url 'comments-delete' %}" method = "POST">
+                {% csrf_token %}
+                <input type="hidden" name="comment_id" value="{{ comment.id }}"/>
+                <input type="hidden" name="blogs_id" value="{{ blogs.id }}"/>
+                <button>Delete</button>
+            </form>
             {% else %}
             <p>Log in to leave a comment</p>
             {% endif %}
@@ -96,3 +110,8 @@
     </div>
 
     {% endblock content %}
+    {% block extras %}
+    <script src="{% static 'js/comments.js' %}"></script>
+    {% endblock %}
+
+
