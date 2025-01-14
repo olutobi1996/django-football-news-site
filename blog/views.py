@@ -45,20 +45,15 @@ def comment_edit(request, slug, comment_id):
 
         form = SuggestionCommentForm(request.POST, instance=commentObj)
 
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.author = request.user
-            new_comment.suggestion = self.get_object()
-            new_comment.save()
-            self.object = self.get_object()
-            context = self.get_context_data(object=self.object)
-            html = render_to_string('suggestion_comments.html', context, request=self.request)
-            return JsonResponse({'form': html})
+        if comment_form.is_valid() and comment.author == request.user:
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.approved = False
+            comment.save()
+            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
         else:
-            form_errors = form.errors.as_json()
-            response = HttpResponse(form_errors, status=400)
-            response['content_type'] = 'application/json'
-            return response
+            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+        
 
 def comment_delete(request, slug, comment_id):
 
