@@ -72,14 +72,10 @@
                         This Needs Checking!
                     </p>
                     {% endif %}
-                    <form action="/blog/{{ pk=comment_id }}/update", method="POST">
-                        {% csrf_token %}
-                        <input type='text' name='title' value='{{ comment_edit }}'/>
-                        <input type='text' class='textinput' name='content' value='{{ comment_form }}'/>
-                        <input type="submit" value="Submit"/>
-                    </form>
-                    <button name="submit">Save changes</button>
-                    </form>
+                    {% if user.is_authenticated and comment.author == user %}
+                    <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
+                    <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
+                    {% endif %}
                 </div>
                 <!-- Our for loop ends here -->
                 {% endfor %}
@@ -97,10 +93,10 @@
                 {% csrf_token %}
                 <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
             </form>
-            <form action = "{% url 'comments-delete' %}" method = "POST">
+            <form action="{% url 'comments-delete' %}" method="POST">
                 {% csrf_token %}
-                <input type="hidden" name="comment_id" value="{{ comment.id }}"/>
-                <input type="hidden" name="blogs_id" value="{{ blogs.id }}"/>
+                <input type="hidden" name="comment_id" value="{{ comment.id }}" />
+                <input type="hidden" name="blogs_id" value="{{ blogs.id }}" />
                 <button>Delete</button>
             </form>
             {% else %}
@@ -112,6 +108,29 @@
     {% endblock content %}
     {% block extras %}
     <script src="{% static 'js/comments.js' %}"></script>
+
+    <!-- Delete confirmation modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1"
+aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title"
+        id="deleteModalLabel">Delete comment?</h5>
+      <button type="button" class="btn-close"
+        data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      Are you sure you want to delete your comment?
+      This action cannot be undone.
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary"
+        data-bs-dismiss="modal">Close</button>
+      <a id="deleteConfirm" href="#" class="btn
+        btn-danger">Delete</a>
+    </div>
+  </div>
+</div>
+</div>
     {% endblock %}
-
-

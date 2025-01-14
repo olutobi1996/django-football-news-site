@@ -5,6 +5,6 @@ from django.urls import path
 urlpatterns = [
     path('', views.PostList.as_view(), name='home'),
     path('<slug:slug>/', views.post_detail, name='post_detail'),
-    path('delete/comment/', delete_comment, name='delete_comment')
-   path('blog/<pk>/edit', postEdit),
+    path('<slug:slug>/delete_comment/<int:comment_id>',
+    views.comment_delete, name='comment_delete'),
 ]
