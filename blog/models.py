@@ -30,10 +30,16 @@ class PostComment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     parent_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
+    approve = models.BooleanField(default=False)
     class Meta:
         ordering = ('-created_on', 'user')
     def __str__(self):
         return f"Comment{self.user.username} posted \"{self.comment}\" on {self.created_on}"
+
+    def approve_comment(self):
+        self.approve = True
+        self.save()
+
 
 
 
