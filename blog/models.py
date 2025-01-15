@@ -33,7 +33,7 @@ class PostComment(models.Model):
     class Meta:
         ordering = ('-created_on', 'user')
     def __str__(self):
-        return f"Comment{self.user.username} posted \"{self.content}\" on {self.date_published}"
+        return f"Comment{self.user.username} posted \"{self.comment}\" on {self.created_on}"
 
 
 
