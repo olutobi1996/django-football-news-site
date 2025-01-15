@@ -9,5 +9,10 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ["title"]
     list_filter = ["created_on"]
     prepopulated_fields = {'slug':('title',)} 
+    actions = ['approve_comments']
 
-admin.site.register(PostComment)
+    def approve_comments(self, request, queryset):
+        queryset.updated(approve=True)
+    approve_comments.short_description = "Approve selected comments"
+
+admin.site.register(PostComment, CommentAdmin)
