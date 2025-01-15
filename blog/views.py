@@ -10,34 +10,34 @@ class PostList(generic.ListView):
     template_name = "blog/index.html"
     paginate_by = 6
 
-def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    comments = post.postcomment_set.all().order_by("-created_on")
-    comment_count = post.postcomment_set.count()
+def post_detail(request, comment_id):
+    # Get the specific post by its primary key (pk)
+    post = get_object_or_404(Post, pk=comment_id)
+
+    # Get only approved comments related to this post
     comments = post.comments.filter(approve=True)
-    if request.method == "POST":
-        comment_form = CommentForm(data=request.POST)
-        if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
-            comment.user = request.user
-            comment.post = post
-            comment.save()
-            messages.add_message(
-            request, messages.SUCCESS,
-            'This needs approval'
-        )
-    comment_form = CommentForm()
 
-    print('COMMENTS: ', comments)
+    # Check if the request method is POST (for adding new comments)
+    if request.method == 'POST':
+        # Assuming you have a CommentForm in forms.py
+        from .forms import CommentForm  # Import the form
 
-    return render(
-        request,
-        "blog/post_detail.html",
-        {
-            "post": post,
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post  # Associate the comment with the post
+            comment.save()  # Save the comment (it won't be approved by default)
+    else:
+        form = CommentForm()  # Display an empty form for GET requests
+
+    # Render the template with the post, comments, and form
+    return render(request, 'blog/post_detail.html', {
+           "post": post,
             "comments": comments,
-        },
-    )
+            "comment_count": comment_count,
+            "comment_form": comment_form
+    })
+    
 def comment_edit(request, slug, comment_id):
     comment_post = get_object_or_404(PostComment, pk=comment_id)
     comment_form = CommentForm(data=request.POST, instance=comment)
