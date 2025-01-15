@@ -15,4 +15,4 @@ class PostAdmin(admin.ModelAdmin):
         queryset.updated(approve=True)
     approve_comments.short_description = "Approve selected comments"
 
-admin.site.register(PostComment, CommentAdmin)
+admin.site.register(PostComment)
