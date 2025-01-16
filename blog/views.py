@@ -10,27 +10,23 @@ class PostList(generic.ListView):
     template_name = "blog/index.html"
     paginate_by = 6
 
-def post_detail(request, comment_id):
-    # Get the specific post by its primary key (pk)
-    post = get_object_or_404(Post, pk=comment_id)
+def post_detail(request, slug):
 
-    # Get only approved comments related to this post
-    comments = post.comments.filter(approve=True)
+    queryset = Post.objects.filter(status=1)
+    post = get_object_or_404(queryset, slug=slug)
+    comments = post.comments.all().order_by("-created_on")
 
-    # Check if the request method is POST (for adding new comments)
     if request.method == 'POST':
-        # Assuming you have a CommentForm in forms.py
-        from .forms import CommentForm  # Import the form
 
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.post = post  # Associate the comment with the post
-            comment.save()  # Save the comment (it won't be approved by default)
+            comment.post = post  
+            comment.save()  
     else:
-        form = CommentForm()  # Display an empty form for GET requests
+        form = CommentForm()  
 
-    # Render the template with the post, comments, and form
+    
     return render(request, 'blog/post_detail.html', {
            "post": post,
             "comments": comments,
