@@ -11,28 +11,26 @@ class PostList(generic.ListView):
     paginate_by = 6
 
 def post_detail(request, slug):
-
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
     comments = post.comments.all().order_by("-created_on")
-
+    comment_count = comments.count()
+    
     if request.method == 'POST':
-
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.post = post  
-            comment.save()  
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.save()
     else:
-        form = CommentForm()  
-
+        comment_form = CommentForm()
     
     return render(request, 'blog/post_detail.html', {
-           "post": post,
-            "comments": comments,
-            "comment_count": comment_count,
-            "comment_form": comment_form
-    })
+        "post": post,
+        "comments": comments,
+        "comment_count": comment_count,
+        "comment_form": comment_form
+    }) 
     
 def comment_edit(request, slug, comment_id):
     comment_post = get_object_or_404(PostComment, pk=comment_id)
