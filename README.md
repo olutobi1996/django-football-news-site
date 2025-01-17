@@ -76,8 +76,9 @@ Features
 
 ## Prerequisites
 
+![ERD Relatiopnship](https://github.com/user-attachments/assets/431ab098-89e9-4fcb-8cda-f48cbd215103)
 
-
+![Wireframe](https://github.com/user-attachments/assets/d950a365-94c3-470c-b511-a4840b893013)
 ## Make sure you have the following installed before setting up the project:
 
 	•	Python (>= 3.8)
