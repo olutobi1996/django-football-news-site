@@ -1,18 +1,15 @@
 from django.contrib import admin
-from .models import Post
-from .models import PostComment
+from .models import Post, PostComment
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ["title","author","created_on"]
-    list_display_links = ["title","created_on"]
-    search_fields = ["title"]
-    list_filter = ["created_on"]
-    prepopulated_fields = {'slug':('title',)} 
-    actions = ['approve_comments']
+    list_display = ('title', 'author', 'status', 'created_on')
+    list_filter = ('status', 'created_on')
+    search_fields = ('title', 'content')
+    prepopulated_fields = {'slug': ('title',)}
 
-    def approve_comments(self, request, queryset):
-        queryset.updated(approve=True)
-    approve_comments.short_description = "Approve selected comments"
-
-admin.site.register(PostComment)
+@admin.register(PostComment)
+class PostCommentAdmin(admin.ModelAdmin):
+    list_display = ('comment', 'user', 'post', 'created_on', 'approve')
+    list_filter = ('approve', 'created_on')
+    search_fields = ('comment', 'user__username', 'post__title')
