@@ -4,15 +4,19 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import Post, PostComment
 from .forms import CommentForm
+from django.contrib.auth.decorators import login_required
 
 class PostList(generic.ListView):
     queryset = Post.objects.all()
     template_name = "blog/index.html"
     paginate_by = 6
 
+
+
+@login_required
 def post_detail(request, slug):
-    post = get_object_or_404(Post, slug=slug, status=0)  # Assuming status=0 is 'Published'
-    comments = post.comments.all().order_by("-created_on")  # Now this works
+    post = get_object_or_404(Post, slug=slug, status=0) 
+    comments = post.comments.all().order_by("-created_on")
     comment_count = comments.count()
 
     if request.method == 'POST':
@@ -20,7 +24,11 @@ def post_detail(request, slug):
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.post = post
+            comment.user = request.user  # Set the user here
             comment.save()
+            messages.success(request, 'Comment added successfully!')
+        else:
+            messages.error(request, 'There was an error adding your comment.')
     else:
         comment_form = CommentForm()
 
