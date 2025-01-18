@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 {% load static %}
 {% load crispy_forms_tags %}
 
@@ -11,23 +12,18 @@
                     <div class="text-center text-white bg-blue d-flex align-items-center news-card-date">
                         <div class="mx-auto news-card-date-body w-75">
                             <i class="far fa-calendar-alt d-none d-block mx-auto"></i>
-                            <!-- Post author goes before the | the post's created date goes after -->
                             <span class="d-block news-card-date-value mt-1">{{ post.author }} | {{ post.created_on
                                 }}</span>
                         </div>
                     </div>
                     <div class="news-card-body">
                         <div class="news-card-img">
-                            <img class="img-fluid"="{% static 'images/football.jpg' %}" alt="placeholder">
+                            <img class="img-fluid" src="{% static 'images/football.jpg' %}" alt="placeholder">
                         </div>
                         <div class="news-card-content">
                             <div class="news-card-content-inner">
-                                <!-- Post title goes in these h1 tags -->
                                 <h1>{{ post.title }}</h1>
-                                <p class="text-paragraph">
-                                    <!-- The post content goes inside the P tag -->
-                                    {{ post.content | safe }}
-                                </p>
+                                <p class="text-paragraph">{{ post.content | safe }}</p>
                             </div>
                         </div>
                     </div>
@@ -47,37 +43,34 @@
             <hr>
         </div>
     </div>
+
     <!-- Displaying Comments -->
     <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 ">
+        <div class="col-md-8 card mb-4 mt-3">
             <h3>Comments:</h3>
             <div class="card-body">
                 {% for comment in comments %}
                 <div class="p-2 comments">
                     <p class="font-weight-bold">
                         {{ comment.user }}
-                        <span class="font-weight-normal">
-                            {{ comment.created_on }}
-                        </span> wrote:
+                        <span class="font-weight-normal">{{ comment.created_on }}</span> wrote:
                     </p>
                     <div id="comment{{ comment.id }}">
-                        {{ comment.post | linebreaks }}
+                        {{ comment.comment | linebreaks }}
                     </div>
                     {% if not comment.approved and comment.user == user %}
-                    <p class="approval">
-                        This Needs Checking!
-                    </p>
+                    <p class="approval">This Needs Checking!</p>
                     {% endif %}
                     {% if user.is_authenticated and comment.user == user %}
                     <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
                     <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
                     {% endif %}
                 </div>
-                <!-- Our for loop ends here -->
                 {% endfor %}
             </div>
         </div>
     </div>
+
     <!-- Creating New Comments -->
     <div class="col-md-4 card mb-4 mt-3">
         <div class="card-body">
@@ -94,31 +87,28 @@
             {% endif %}
         </div>
     </div>
-        <!-- Delete confirmation modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1"
-aria-labelledby="deleteModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title"
-        id="deleteModalLabel">Delete comment?</h5>
-      <button type="button" class="btn-close"
-        data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-      Are you sure you want to delete your comment?
-      This action cannot be undone.
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary"
-        data-bs-dismiss="modal">Close</button>
-      <a id="deleteConfirm" href="#" class="btn
-        btn-danger">Delete</a>
-    </div>
-  </div>
-</div>
-</div>
 
-    {% endblock content %}
-    {% block extras %}
-    <script src="{% static 'js/comment.js' %}"></script>
+    <!-- Delete confirmation modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete your comment? This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block extras %}
+<script src="{% static 'js/comment.js' %}"></script>
+{% endblock extras %}
