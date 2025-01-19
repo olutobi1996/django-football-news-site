@@ -5,12 +5,12 @@ from django.http import HttpResponseRedirect
 from .models import Post, PostComment
 from .forms import CommentForm
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 class PostList(generic.ListView):
     queryset = Post.objects.all()
     template_name = "blog/index.html"
     paginate_by = 6
-
 
 
 @login_required
@@ -62,3 +62,13 @@ def comment_delete(request, slug, comment_id):
         messages.error(request, 'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+def post_search(request):
+    query = request.GET.get('q')
+    results = Post.objects.filter(
+        Q(title__icontains=query) | Q(content__icontains=query),
+        status=1  # Assuming 1 is "Published"
+    ) if query else Post.objects.none()
+
+    return render(request, 'blog/search_results.html', {'query': query, 'results': results})
+    

@@ -2,8 +2,7 @@
 {% load static %}
 {% block content %}
 
-
-<!-- Page header with logo and tagline-->
+<!-- Page header with logo and tagline -->
 <header class="py-5 bg-light border-bottom mb-4">
     <div class="container">
         <div class="text-center my-5">
@@ -11,33 +10,57 @@
         </div>
     </div>
 </header>
-<!-- Page content-->
+
+<!-- Page content -->
 <div class="container">
     <div class="row">
-        <!-- Blog entries-->
+        <!-- Blog entries -->
         <div class="col-lg-8">
             {% for post in post_list %}
-            <!-- Featured blog post-->
+            <!-- Featured blog post -->
             <div class="card mb-4">
                 {% if "placeholder" in post.featured_image.url %}
                 <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
                 {% else %}
-                <img class="card-img-top" src=" {{ post.featured_image.url }}" alt="{{ post.title }}">
+                <img class="card-img-top" src="{{ post.featured_image.url }}" alt="{{ post.title }}">
                 {% endif %}
                 <div class="card-body">
-                    <div class="small text-muted">Author: {{ post.author }}</div>
+                    <div class="small text-muted">Author: {{ post.author }} | {{ post.created_on }}</div>
                     <a href="{% url 'post_detail' post.slug %}">
                         <h2 class="card-title h4">{{ post.title }}</h2>
-                        <p class="card-text">{{ post.excerpt }}</p>
-                        <p class="card-text"></p>
-                        <a class="btn btn-primary" href="#!">{{ post.created_on}}</a>
+                    </a>
+                    <p class="card-text">{{ post.excerpt }}</p>
+                    <a class="btn btn-primary" href="{% url 'post_detail' post.slug %}">Read More</a>
                 </div>
-
             </div>
-            {%endfor%}
+            {% endfor %}
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header">Search</div>
+                <div class="card-body">
+                    <form action="{% url 'post_search' %}" method="GET">
+                        <div class="input-group">
+                            <input class="form-control" type="text" name="q" placeholder="Enter search term..." />
+                            <button class="btn btn-primary" type="submit">Go!</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">Categories</div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        {% for category in categories %}
+                        <li><a href="{% url 'category_posts' category.slug %}">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- index.html content ends here -->
 {% endblock %}
