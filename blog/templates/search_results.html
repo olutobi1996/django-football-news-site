@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+    <h1>Search Results</h1>
+    {% if query %}
+        <p>Results for: "{{ query }}"</p>
+        {% if results %}
+            <ul>
+                {% for post in results %}
+                    <li>
+                        <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No results found for your query.</p>
+        {% endif %}
+    {% else %}
+        <p>Please enter a search term.</p>
+    {% endif %}
+</div>
+{% endblock %}
