@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-   {% load static %}
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Football Blog</title>
@@ -15,30 +15,33 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">Football Blog</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a>
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}"
+                            href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/info/' %}active{% endif %}" href="{% url 'info' %}">Info</a>
+                        <a class="nav-link {% if request.path == '/info/' %}active{% endif %}"
+                            href="{% url 'info' %}">Info</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                    </li>
                     {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                    </li>
                     {% endif %}
                 </ul>
             </div>
@@ -50,11 +53,13 @@
         <div class="container">
             <div class="row align-items-center gy-4">
                 <!-- Image Section -->
+                <!-- Image Section -->
                 <div class="col-lg-6">
-                    {% if "placeholder" in about.profile_image.url %}
-                        <img src="{% static 'images/default-profile.jpg' %}" class="img-fluid rounded" alt="About Us">
+                    <!-- Check if an image is uploaded or show placeholder -->
+                    {% if about.profile_image %}
+                    <img src="{{ about.profile_image.url }}" class="img-fluid rounded" alt="About Us">
                     {% else %}
-                        <img src="{{ about.profile_image.url }}" class="img-fluid rounded" alt="{{ about.title }}">
+                    <img src="{% static 'images/football.jpg' %}" class="img-fluid rounded" alt="About Us">
                     {% endif %}
                 </div>
 
@@ -62,10 +67,12 @@
                 <div class="col-lg-6">
                     <h2 class="mb-3">Who Are We?</h2>
                     <p class="lead text-secondary">
-                        We are an online journal dedicated to all football-related topics. Join our fast-growing community to engage in debates and explore the latest news and insights about football.
+                        We are an online journal dedicated to all football-related topics. Join our fast-growing
+                        community to engage in debates and explore the latest news and insights about football.
                     </p>
                     <p class="text-secondary">
-                        Our mission is to discuss the harsh truths of football, celebrate its beauty, and share fresh perspectives on the sport we all love.
+                        Our mission is to discuss the harsh truths of football, celebrate its beauty, and share fresh
+                        perspectives on the sport we all love.
                     </p>
 
                     <div class="row mt-4">
@@ -76,7 +83,8 @@
                                 </div>
                                 <div>
                                     <h5 class="mb-2">Hot Topics</h5>
-                                    <p class="text-secondary mb-0">Visit our homepage to explore the latest and trending football articles.</p>
+                                    <p class="text-secondary mb-0">Visit our homepage to explore the latest and trending
+                                        football articles.</p>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +95,8 @@
                                 </div>
                                 <div>
                                     <h5 class="mb-2">Our Blog</h5>
-                                    <p class="text-secondary mb-0">Bringing you the best coverage and analysis of the football world.</p>
+                                    <p class="text-secondary mb-0">Bringing you the best coverage and analysis of the
+                                        football world.</p>
                                 </div>
                             </div>
                         </div>
