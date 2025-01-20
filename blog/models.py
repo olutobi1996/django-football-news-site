@@ -46,6 +46,3 @@ class PostComment(models.Model):
 
 
 
-
-
-
