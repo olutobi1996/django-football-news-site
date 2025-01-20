@@ -15,7 +15,7 @@ class PostList(generic.ListView):
 
 @login_required
 def post_detail(request, slug):
-    post = get_object_or_404(Post, slug=slug, status=0) 
+    post = get_object_or_404(Post, slug=slug, status=1) 
     comments = post.comments.all().order_by("-created_on")
     comment_count = comments.count()
 
