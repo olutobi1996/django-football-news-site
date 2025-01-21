@@ -7,15 +7,22 @@ const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 const deleteButtons = document.getElementsByClassName("btn-delete");
 const deleteConfirm = document.getElementById("deleteConfirm");
 
-for (let button of editButtons) {
-  button.addEventListener("click", (e) => {
-    let commentId = e.target.getAttribute("data-comment_id");
-    let commentContent = document.getElementById(`comment${commentId}`).innerText;
-    commentText.value = commentContent;
-    submitButton.innerText = "Update";
-    commentForm.setAttribute("action", `edit_comment/${commentId}`);
+document.addEventListener("DOMContentLoaded", function () {
+  const editButtons = document.querySelectorAll(".btn-edit");
+  editButtons.forEach((button) => {
+      button.addEventListener("click", (event) => {
+          const commentId = button.getAttribute("data-comment_id");
+          const editFormContainer = document.querySelector(`#editFormContainer${commentId}`);
+          // Fetch and display form dynamically
+          fetch(`/edit_comment/${slug}/${commentId}/`)
+              .then((response) => response.text())
+              .then((html) => {
+                  editFormContainer.innerHTML = html;
+              })
+              .catch((error) => console.error("Error fetching form:", error));
+      });
   });
-}
+});
 
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
