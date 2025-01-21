@@ -2,32 +2,38 @@
 
 # Overview
 
+![Image](https://github.com/user-attachments/assets/2e6f8434-a944-46a3-97b4-5abe53060b8a)
 My Django football blog offers substantial value by delivering curated, insightful content tailored to football enthusiasts. The clean and organized layout, combined with intuitive navigation, ensures users can effortlessly access information and engage with the community. Features like the search bar and categorized posts enhance usability, while interactive elements such as commenting and user authentication promote a sense of community. By leveraging Django’s robust framework, the blog provides a seamless, responsive, and enjoyable experience for all users.
 
 # Key Features
 
 # Navbar
 
+![Image](https://github.com/user-attachments/assets/913234d8-2de2-4988-99af-5a11fbe796ab)
 
 The primary navigation tool provides quick access to essential pages such as Home, About, Contact, and Categories. It ensures users can effortlessly explore different sections of the blog.
 
 # Blog Posts
 
+![Image](https://github.com/user-attachments/assets/d099a2b3-6672-41e0-8a54-e8222470a9a0)
 
 Each post offers insightful content related to football, complete with titles, publication dates, and author information. This structure allows readers to stay informed and engaged with the latest discussions.
 
 # “Read More” Links
 
+![Image](https://github.com/user-attachments/assets/70f455aa-e0bb-42b4-bfb6-04a0efd27c79)
 
 These links accompany brief excerpts of each blog post, inviting users to delve deeper into topics of interest by accessing the full articles.
 
 # Search Bar
 
+![Image](https://github.com/user-attachments/assets/d0eec2c2-07c6-4004-b020-838255f32e84)
 
 Positioned prominently, the search functionality enables users to quickly find specific articles or topics, enhancing the overall accessibility of the blog’s content.
 
 # Information Page
 
+![Image](https://github.com/user-attachments/assets/44334780-23d7-4dca-9da7-99e36a19ea94)
 
 This section provides background about the blog, its mission, and the team behind it, fostering a connection between the readers and the creators.
 
@@ -35,11 +41,15 @@ This section provides background about the blog, its mission, and the team behin
 
 # Sign-In and Sign-Out Pages
 
+![Image](https://github.com/user-attachments/assets/ea877dec-5658-445e-a375-ef8473351799)
+
+![Image](https://github.com/user-attachments/assets/ba9e0f6e-4c21-444e-a68f-1d3c62ca4100)
 
 These pages facilitate user authentication, allowing readers to log in to access personalized features or log out when they finish their session, ensuring a secure and tailored experience.
 
 # Registration Page
 
+![Image](https://github.com/user-attachments/assets/8947bc77-996b-417e-9a34-0f2de7c6a108)
 
 New users can create accounts here, enabling them to participate in discussions, leave comments, and engage more deeply with the community.
 
@@ -47,26 +57,31 @@ New users can create accounts here, enabling them to participate in discussions,
 
 # Leave a Comment
 
+![Image](https://github.com/user-attachments/assets/2afec92f-ecfe-4bd6-bae6-f3bfecc9e9ea)
 
 Authenticated users can leave comments on blog posts, encouraging interaction and discussion. The comment form is straightforward, requiring only the comment text.
 
 # Save Changes Comment
 
+![Image](https://github.com/user-attachments/assets/bfcadc83-04bd-469b-9400-557b8d32f879)
 
 Authenticated users can contribute to conversations by submitting comments on blog posts, fostering an interactive and dynamic community.
 
 # Edit Comment
 
+![Image](https://github.com/user-attachments/assets/2dc7a479-54a4-4d93-8310-1748a3dcf648)
 
 This feature allows users to modify their previously submitted comments, ensuring their contributions remain accurate and reflective of their current views.
 
 # Delete Comment
 
+![Image](https://github.com/user-attachments/assets/89c4a71a-2699-4a48-a38f-9926f4fd7e1a)
 
 Users have the autonomy to remove their comments if they choose, maintaining control over their participation and the content they share.
 
 # Approval for Comments
 
+![Image](https://github.com/user-attachments/assets/e9c854cb-405d-4b35-8417-04ba1c82bd7a)
 
 To maintain content quality, new comments may require approval before becoming publicly visible. This moderation ensures a respectful and relevant discussion environment.
 
