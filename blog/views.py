@@ -39,17 +39,28 @@ def post_detail(request, slug):
         "comment_form": comment_form,
     })
 
+@login_required
 def comment_edit(request, slug, comment_id):
-    comment_post = get_object_or_404(PostComment, pk=comment_id)
+    comment = get_object_or_404(PostComment, pk=comment_id)
+    # Ensure only the owner can edit
+    if comment.user != request.user:
+        messages.error(request, "You are not authorized to edit this comment.")
+        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
     if request.method == "POST":
-        comment_form = CommentForm(request.POST, instance=comment_post)
-        if comment_form.is_valid() and comment_post.author == request.user:
-            comment_form.save()
-            messages.success(request, 'Comment Updated!')
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Comment updated successfully!')
+            return HttpResponseRedirect(reverse('post_detail', args=[slug]))
         else:
-            messages.error(request, 'Error updating comment!')
-    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+            messages.error(request, 'Error updating comment.')
+    else:
+        form = CommentForm(instance=comment)
+
+    return render(request, 'edit_comment.html', {'form': form, 'post': comment.post})
+
+
 
 def comment_delete(request, slug, comment_id):
     post = get_object_or_404(Post, slug=slug, status=0)  # Assuming status=0 is 'published'
