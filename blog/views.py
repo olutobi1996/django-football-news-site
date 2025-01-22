@@ -58,7 +58,7 @@ def comment_edit(request, slug, comment_id):
     else:
         form = CommentForm(instance=comment)
 
-    return render(request, 'edit_comment.html', {'form': form, 'post': comment.post})
+    return render(request, 'blog/edit_comment.html', {'form': form, 'post': comment.post})
 
 
 
