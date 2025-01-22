@@ -61,11 +61,12 @@
                     {% if not comment.approved and comment.user == user %}
                     <p class="approval">This Needs Checking!</p>
                     {% endif %}
-                    
+
                     {% if user.is_authenticated and comment.user == user %}
                     <a href="{% url 'edit_comment' post.slug comment.sno %}" class="btn btn-secondary">Edit</a>
-                    <button class="btn btn-danger" data-comment_id="{{ comment.sno }}" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
-                {% endif %}
+                    <button class="btn btn-danger" data-comment_id="{{ comment.sno }}" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal">Delete</button>
+                    {% endif %}
                 </div>
                 {% endfor %}
             </div>
@@ -78,21 +79,16 @@
             {% if user.is_authenticated %}
             <h3>Leave a comment:</h3>
             <p>Posting as: {{ user.username }}</p>
-            <section class="container mt-5">
-                <h2>Edit Comment</h2>
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
-                    <a href="{% url 'post_detail' post.slug %}" class="btn btn-secondary mt-3">Cancel</a>
-                </form>
-            </section>
-        {% else %}
-            <p>Log in to leave a comment.</p>
-        {% endif %}
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </form>
+            {% else %}
+            <p>Please <a href="{% url 'account_login' %}">log in</a> to leave a comment.</p>
+            {% endif %}
         </div>
     </div>
-
 
     <!-- Delete confirmation modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
