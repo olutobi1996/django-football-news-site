@@ -3,19 +3,24 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+<!-- Main Section -->
 <section class="bg-light py-5">
     <div class="container">
+        <!-- Divider and header row -->
         <div class="divider"></div>
         <div class="row py-3">
             <div class="col-lg-6">
+                <!-- News Card: Displays post details -->
                 <div class="news-card mb-3">
+                    <!-- Author and Created Date -->
                     <div class="text-center text-white bg-blue d-flex align-items-center news-card-date">
                         <div class="mx-auto news-card-date-body w-75">
                             <i class="far fa-calendar-alt d-none d-block mx-auto"></i>
-                            <span class="d-block news-card-date-value mt-1">{{ post.author }} | {{ post.created_on
-                                }}</span>
+                            <span class="d-block news-card-date-value mt-1">{{ post.author }} | {{ post.created_on }}
+                            </span>
                         </div>
                     </div>
+                    <!-- Post content and image -->
                     <div class="news-card-body">
                         <div class="news-card-img">
                             <img class="img-fluid" src="{% static 'images/football.jpg' %}" alt="placeholder">
@@ -32,7 +37,7 @@
         </div>
     </div>
 
-    <!-- Displaying count of comments -->
+    <!-- Comment Count -->
     <div class="row">
         <div class="col-12">
             <strong class="text-secondary">
@@ -51,21 +56,28 @@
             <div class="card-body">
                 {% for comment in comments %}
                 <div class="p-2 comments">
+                    <!-- Comment User and Timestamp -->
                     <p class="font-weight-bold">
                         {{ comment.user }}
                         <span class="font-weight-normal">{{ comment.created_on }}</span> wrote:
                     </p>
+                    <!-- Comment Text -->
                     <div id="comment{{ comment.id }}">
                         {{ comment.comment | linebreaks }}
                     </div>
+                    <!-- Unapproved Comment Message -->
                     {% if not comment.approved and comment.user == user %}
                     <p class="approval">This Needs Checking!</p>
                     {% endif %}
 
+                    <!-- Edit and Delete Buttons for the Comment Author -->
                     {% if user.is_authenticated and comment.user == user %}
                     <a href="{% url 'edit_comment' post.slug comment.sno %}" class="btn btn-secondary">Edit</a>
-                    <button class="btn btn-danger" data-comment_id="{{ comment.sno }}" data-bs-toggle="modal"
-                        data-bs-target="#deleteModal">Delete</button>
+                    <button class="btn btn-danger delete-comment-btn" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"
+                        data-delete-url="{% url 'comment_delete' post.slug comment.sno %}">
+                        Delete
+                    </button>
                     {% endif %}
                 </div>
                 {% endfor %}
@@ -73,10 +85,11 @@
         </div>
     </div>
 
-    <!-- Creating New Comments -->
+    <!-- Comment Submission Form -->
     <div class="col-md-4 card mb-4 mt-3">
         <div class="card-body">
             {% if user.is_authenticated %}
+            <!-- Form to submit a new comment -->
             <h3>Leave a comment:</h3>
             <p>Posting as: {{ user.username }}</p>
             <form method="POST" action="">
@@ -85,32 +98,39 @@
                 <button type="submit" class="btn btn-primary mt-3">Submit</button>
             </form>
             {% else %}
+            <!-- Prompt to log in for unauthenticated users -->
             <p>Please <a href="{% url 'account_login' %}">log in</a> to leave a comment.</p>
             {% endif %}
         </div>
     </div>
 
-    <!-- Delete confirmation modal -->
+    <!-- Delete Confirmation Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
+                    <!-- Modal Title -->
                     <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- Confirmation Message -->
                     Are you sure you want to delete your comment? This action cannot be undone.
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
+                    <!-- CSRF Token and Submit Button -->
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </div>
             </div>
         </div>
     </div>
+
 </section>
 {% endblock content %}
 
+<!-- JavaScript Section -->
 {% block extras %}
 <script src="{% static 'js/comment.js' %}"></script>
 {% endblock extras %}

@@ -12,7 +12,7 @@ class PostList(generic.ListView):
     template_name = "blog/index.html"
     paginate_by = 6
 
-
+ # comment form
 @login_required
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug, status=1) 
