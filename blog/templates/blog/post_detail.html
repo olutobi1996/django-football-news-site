@@ -72,12 +72,10 @@
 
                     <!-- Edit and Delete Buttons for the Comment Author -->
                     {% if user.is_authenticated and comment.user == user %}
-                    <a href="{% url 'edit_comment' post.slug comment.sno %}" class="btn btn-secondary">Edit</a>
-                    <button class="btn btn-danger delete-comment-btn" data-bs-toggle="modal"
-                        data-bs-target="#deleteModal"
-                        data-delete-url="{% url 'comment_delete' post.slug comment.sno %}">
-                        Delete
-                    </button>
+                    <button class="btn btn-delete" data-comment_id="{{ comment.sno}}">Delete</button>
+                    <a href="{% url 'edit_comment' post.slug comment.sno %}" class="btn btn-primary btn-edit">
+                        Edit
+                    </a>
                     {% endif %}
                 </div>
                 {% endfor %}
@@ -104,12 +102,11 @@
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
+    <!-- Delete confirmation modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <!-- Modal Title -->
                     <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -119,9 +116,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <!-- CSRF Token and Submit Button -->
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
                 </div>
             </div>
         </div>
@@ -132,5 +127,6 @@
 
 <!-- JavaScript Section -->
 {% block extras %}
+<script>const blogSlug = "{{ post_slug }}";</script>
 <script src="{% static 'js/comment.js' %}"></script>
 {% endblock extras %}
