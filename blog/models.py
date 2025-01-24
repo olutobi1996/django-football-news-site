@@ -44,4 +44,3 @@ class PostComment(models.Model):
         self.approve = True
         self.save()
 
-

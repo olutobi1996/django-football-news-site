@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const commentId = button.getAttribute("data-comment_id");
 
             // Use the commentId to find the associated container for the edit form.
-            const editFormContainer = document.querySelector(`#editFormContainer${commentId}`);
+            const editFormContainer = document.querySelector(`${commentId}`);
 
             // Dynamically fetch the edit form's HTML from the server.
             fetch(`/edit_comment/${slug}/${commentId}/`) // Adjust the `slug` variable as needed.
