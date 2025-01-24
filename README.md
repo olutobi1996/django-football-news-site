@@ -452,7 +452,15 @@ python manage.py collectstatic
 
 Deploy using a WSGI server like Gunicorn and a web server like Nginx.
 
+## Validator Testing
+• HTML
+No errors were returned when passing through the official [W3C validator] https://validator.w3.org/nu/?doc=https%3A%2F%2F8000-olutobi1996-djangofootb-p47lxg23wkk.ws-eu117.gitpod.io%2F 
 
+• CSS
+No errors were found when passing through the official [(Jigsaw)] https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2F8000-olutobi1996-djangofootb-p47lxg23wkk.ws-eu117.gitpod.io%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en 
+
+JavaScript No errors were found when passing through the official Jshint validator The following metrics were returned:
+![jshint](https://github.com/user-attachments/assets/876b3676-b8b9-4e2a-8220-be7b0393af2a)
 
 ## Contributing
 

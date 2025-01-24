@@ -72,7 +72,7 @@
 
                     <!-- Edit and Delete Buttons for the Comment Author -->
                     {% if user.is_authenticated and comment.user == user %}
-                    <button class="btn btn-danger btn-delete"  data-comment_id="{{ comment.sno}}">Delete</button>
+                    <button class="btn btn-danger btn-delete" data-comment_id="{{ comment.sno}}">Delete</button>
                     <a href="{% url 'edit_comment' post.slug comment.sno %}" class="btn btn-primary btn-edit">
                         Edit
                     </a>

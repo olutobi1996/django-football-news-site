@@ -82,3 +82,4 @@ def post_search(request):
 
     return render(request, 'blog/search_results.html', {'query': query, 'results': results})
     
+    
