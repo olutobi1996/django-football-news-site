@@ -8,9 +8,11 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
 class PostList(generic.ListView):
-    queryset = Post.objects.all()
     template_name = "blog/index.html"
     paginate_by = 6
+
+    def get_queryset(self):
+        return Post.objects.filter(status=1)
 
  # comment form
 @login_required
