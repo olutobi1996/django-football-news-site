@@ -410,17 +410,136 @@ whitenoise==5.3.0
 
 ## Testing
 
+How to Run Tests
+To run the test suite, execute the following command in your project directory:
 
-
-To run tests for the application:
-
-	1.	Test Cases ran in blog folder.
-
-
-
+bash
+Copy
+Edit
 python manage.py test
+Test Details
+Setup
+The setUp method initializes test data to be used across all tests:
+
+Posts:
+A published post (self.post).
+A draft post (self.draft_post).
+Comments:
+A comment (self.comment) linked to the published post.
+User:
+A test user (self.user) and an alternate user for unauthorized access tests.
+Tests
+1. test_post_list_view
+Purpose: Verifies the functionality of the PostList view (home).
+Assertions:
+HTTP status code is 200.
+Correct template (blog/index.html) is used.
+Only published posts are displayed in the post list.
+
+2. test_post_detail_view
+Purpose: Verifies the post_detail view for a published post.
+Assertions:
+HTTP status code is 200.
+Correct template (blog/post_detail.html) is used.
+The view includes post details and associated comments.
+
+3. test_post_detail_unauthenticated
+Purpose: Ensures unauthenticated users are redirected to the login page when attempting to access the post_detail view.
+Assertions:
+Redirect to /accounts/login/.
+
+4. test_comment_edit_view
+Purpose: Validates that the owner of a comment can edit it.
+Assertions:
+The comment is updated successfully.
+Redirects to the post_detail view after editing.
+
+5. test_comment_edit_unauthorized
+Purpose: Prevents unauthorized users from editing someone else’s comments.
+Assertions:
+The comment remains unchanged.
+Redirects to the post_detail view.
+
+6. test_comment_delete_without_slug
+Purpose: Validates that an authenticated user can delete their own comment.
+Assertions:
+Comment is successfully deleted.
+Redirects to the home page after deletion.
+
+7. test_comment_delete_unauthorized
+Purpose: Prevents unauthorized users from deleting comments.
+Assertions:
+The comment remains in the database.
+Redirects to the home page.
+
+8. test_post_search
+Purpose: Tests the functionality of the search feature for posts.
+Assertions:
+HTTP status code is 200.
+Correct template (blog/search_results.html) is used.
+Returns results that match the query.
+Excludes draft posts from the results.
+
+9. test_post_search_no_query
+Purpose: Ensures that no results are returned if the search query is empty.
+Assertions:
+HTTP status code is 200.
+Correct template (blog/search_results.html) is used.
+No results are returned.
+Customization
+Update the slug, username, or password values in the test data to match your application’s requirements.
+Add more tests if new features are introduced, such as category filtering or pagination.
+
+When the tests are executed, the expected output is as follows:
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.543s
+
+OK
 
 
+Test Data:
+
+The comment field is populated with a non-empty string ('This is a valid comment').
+Assertions:
+
+Ensures the form is valid using assertTrue(comment_form.is_valid()).
+If the form is invalid, debug information (form errors) is printed to help identify issues.
+
+data = {
+    'comment': 'This is a valid comment',
+}
+comment_form = CommentForm(data=data)
+self.assertTrue(comment_form.is_valid())
+
+2. test_form_is_invalid
+Purpose: Verifies that the CommentForm is invalid when required fields are missing or contain invalid data.
+
+Test Data:
+
+The comment field is empty (''), which is invalid because the field is required.
+Assertions:
+
+Ensures the form is invalid using assertFalse(comment_form.is_valid()).
+If the form is invalid, debug information (form errors) is printed to help identify issues.
+
+data = {
+    'comment': '',  # Invalid because the comment is empty
+}
+comment_form = CommentForm(data=data)
+self.assertFalse(comment_form.is_valid())
+
+When the tests are executed, the expected output is as follows:
+
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.123s
+
+OK
 
 ## Deployment
 

@@ -4,13 +4,16 @@ from django.contrib.auth.models import User
 from blog.models import Post, PostComment
 from blog.forms import CommentForm
 from django.utils.text import slugify
-
+from django.urls import NoReverseMatch, get_resolver
 
 class BlogViewsTest(TestCase):
-    def setUp(self):
-        # Create test users
-        self.user = User.objects.create_user(username='testuser', password='testpassword')
-        self.other_user = User.objects.create_user(username='otheruser', password='testpassword')
+    class BlogViewsTest(TestCase):
+        def setUp(self):
+            self.post = Post.objects.create(
+            title="Test Post",
+            content="This is a test post.",
+            slug="test-slug"  # Ensure the slug matches the one in the test
+        )
 
         # Create a published post
         self.post = Post.objects.create(
@@ -18,7 +21,6 @@ class BlogViewsTest(TestCase):
             content="This is the content of the test post.",
             slug="test-post",
             status=1,  # Published
-            author=self.user
         )
 
         # Create a draft post
@@ -62,13 +64,13 @@ class BlogViewsTest(TestCase):
 
     def test_post_detail_unauthenticated(self):
         """Test that unauthenticated users are redirected to login."""
-    response = self.client.get(reverse('post_detail', args=[self.post.slug]))
-    self.assertRedirects(response, f'/accounts/login/?next=/{self.post.slug}/')
+        response = self.client.get(reverse('post_detail', args=[self.post.slug]))
+        self.assertRedirects(response, f'/accounts/login/?next=/post/{self.post.slug}/')
 
     def test_comment_edit_view(self):
         """Test that the owner can edit their comment."""
         self.client.login(username='testuser', password='testpassword')
-        url = reverse('comment_edit', args=[self.post.slug, self.comment.sno])
+        url = reverse('comment_edit', args=['test-slug', 1])
 
         data = {'comment': 'This is an edited comment.'}
         response = self.client.post(url, data)

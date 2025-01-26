@@ -63,7 +63,7 @@ def comment_edit(request, slug, comment_id):
     return render(request, 'blog/edit_comment.html', {'form': form, 'post': comment.post})
 
 
-
+# if loop for user deleting comment
 def comment_delete_without_slug(request, comment_id):
     comment = get_object_or_404(PostComment, sno=comment_id)
     if comment.user == request.user:
@@ -75,6 +75,7 @@ def comment_delete_without_slug(request, comment_id):
     # Redirect somewhere (e.g., the home page)
     return HttpResponseRedirect(reverse('home'))
 
+# Search for blogs
 def post_search(request):
     query = request.GET.get('q')
     results = Post.objects.filter(
