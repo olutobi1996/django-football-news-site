@@ -12,7 +12,7 @@ class TestCommentForm(TestCase):
     def setUp(self):
         # Create a test user
         self.user = User.objects.create_user(username="testuser", password="password")
-        
+
         # Create a test post that the comment will be related to
         self.post = Post.objects.create(
             title="Test Post", 
@@ -20,6 +20,13 @@ class TestCommentForm(TestCase):
             slug="test-post", 
             status=1,  # Published
             author=self.user
+        )
+
+        # Create a test comment
+        self.comment = PostComment.objects.create(
+            comment="This is a test comment.",
+            user=self.user,
+            post=self.post,
         )
 
     def test_form_is_valid(self):

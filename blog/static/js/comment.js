@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// Delete button for form
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
         let commentId = e.target.getAttribute("data-comment_id");
