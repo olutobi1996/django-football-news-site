@@ -14,6 +14,9 @@ from pathlib import Path
 import os
 import dj_database_url
 from decouple import config
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Load env.py if exists (useful for local development)
 if os.path.isfile('env.py'):
@@ -25,12 +28,16 @@ TEMPLATES_DIR = BASE_DIR / 'templates'
 
 # SECURITY SETTINGS
 SECRET_KEY = config('SECRET_KEY', default='your-default-secret-key')
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    '.gitpod.io',
     '8000-olutobi1996-djangofootb-p47lxg23wkk.ws-eu117.gitpod.io',
     '.herokuapp.com'
 ]
+
 
 # APPLICATION CONFIGURATION
 INSTALLED_APPS = [
@@ -109,6 +116,21 @@ if not DATABASE_URL:
 DATABASES = {
     'default': dj_database_url.config(default=DATABASE_URL)
 }
+
+# CLOUDINARY_STORAGE
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': config('CLOUDINARY_API_KEY'),
+    'API_SECRET': config('CLOUDINARY_API_SECRET'),
+}
+
+cloudinary.config( 
+  cloud_name = config('CLOUDINARY_CLOUD_NAME'), 
+  api_key = config('CLOUDINARY_API_KEY'), 
+  api_secret = config('CLOUDINARY_API_SECRET') 
+)
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [
