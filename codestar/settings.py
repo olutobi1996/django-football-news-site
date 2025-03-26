@@ -34,8 +34,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     '.gitpod.io',
-    '8000-olutobi1996-djangofootb-p47lxg23wkk.ws-eu117.gitpod.io',
-    '.herokuapp.com'
+    'https://8000-olutobi1996-djangofootb-o4muyzyajr8.ws-eu118.gitpod.io',
+    'https://git.heroku.com/django-football-news-site.git'
 ]
 
 
@@ -106,36 +106,46 @@ TEMPLATES = [
 WSGI_APPLICATION = 'codestar.wsgi.application'
 
 # DATABASE CONFIGURATION
-DATABASE_URL = config('DATABASE_URL', default='')
+DATABASE_URL = config('DATABASE_URL', default=None)
 
-# If DATABASE_URL is not found, use HEROKU_POSTGRESQL_MAUVE_URL (if defined)
+if DATABASE_URL is None:
+    raise ValueError("DATABASE_URL is not set in the environment.")
 
-if not DATABASE_URL:
-    DATABASE_URL = config('HEROKU_POSTGRESQL_MAUVE_URL', default='')
-
+# Set up the database engine and connection
 DATABASES = {
-    'default': dj_database_url.config(default=DATABASE_URL)
+    'default': dj_database_url.config(
+        default=DATABASE_URL,
+        conn_max_age=600,  # optional but a good practice for persistent connections
+        ssl_require=True    # optional: if you're on a platform like Heroku, this is often required
+    )
 }
 
-# CLOUDINARY_STORAGE
+# Ensure the database engine is explicitly set (this part is usually auto-detected by dj_database_url)
+DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
+
+# If DATABASE_URL is not set properly, you can manually define the options below
+# (In case of environment issues with config)
+if not DATABASES['default'].get('NAME'):
+    raise ValueError("The database configuration is missing a NAME field.")
+
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': config('CLOUDINARY_API_KEY'),
-    'API_SECRET': config('CLOUDINARY_API_SECRET'),
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME', default=''),
+    'API_KEY': config('CLOUDINARY_API_KEY', default=''),
+    'API_SECRET': config('CLOUDINARY_API_SECRET', default=''),
 }
 
-cloudinary.config( 
-  cloud_name = config('CLOUDINARY_CLOUD_NAME'), 
-  api_key = config('CLOUDINARY_API_KEY'), 
-  api_secret = config('CLOUDINARY_API_SECRET') 
+cloudinary.config(
+  cloud_name=config('CLOUDINARY_CLOUD_NAME', default=''),
+  api_key=config('CLOUDINARY_API_KEY', default=''),
+  api_secret=config('CLOUDINARY_API_SECRET', default='')
 )
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [
-    "https://8000-olutobi1996-djangofootb-p47lxg23wkk.ws-eu117.gitpod.io",
-    "https://*.herokuapp.com"
+    'https://8000-olutobi1996-djangofootb-o4muyzyajr8.ws-eu118.gitpod.io',
+    'https://git.heroku.com/django-football-news-site.git'
 ]
 
 # PASSWORD VALIDATION
