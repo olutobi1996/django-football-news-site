@@ -19,8 +19,8 @@ import cloudinary.uploader
 import cloudinary.api
 
 # Load env.py if exists (useful for local development)
-if os.path.isfile('env.py'):
-    import env
+if os.path.exists("env.py"):
+  import env 
 
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
