@@ -28,7 +28,7 @@ TEMPLATES_DIR = BASE_DIR / 'templates'
 
 # SECURITY SETTINGS
 SECRET_KEY = config('SECRET_KEY', default='your-default-secret-key')
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
