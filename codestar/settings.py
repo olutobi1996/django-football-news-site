@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     '.gitpod.io',
+    'olutobi1996.github.io'
     'https://8000-olutobi1996-djangofootb-o4muyzyajr8.ws-eu118.gitpod.io',
     'https://git.heroku.com/django-football-news-site.git'
 ]
